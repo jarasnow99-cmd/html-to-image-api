@@ -20,13 +20,13 @@ def convert_html():
         page = browser.new_page(viewport={"width": 1080, "height": 1440})
         page.set_content(html_code)
         
-        # التقاط الصورة
-        img_bytes = page.screenshot(type="png")
+        # التقاط الصورة بصيغة jpeg مع تحديد الجودة 85 لتقليل الحجم وسرعة الرفع
+        img_bytes = page.screenshot(type="jpeg", quality=85)
         browser.close()
 
     return send_file(
         io.BytesIO(img_bytes),
-        mimetype='image/png'
+        mimetype='image/jpeg'
     )
 
 if __name__ == '__main__':
